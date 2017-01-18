@@ -1,0 +1,19 @@
+{
+  "name": "mean-app",
+  "version": "1.0.0",
+  "description": "Simple mean stack app.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jtegtmeier/mean-app.git"
+  },
+  "author": "Jake Tegtmeier",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jtegtmeier/mean-app/issues"
+  },
+  "homepage": "https://github.com/jtegtmeier/mean-app#readme"
+}
