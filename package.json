@@ -2,9 +2,10 @@
   "name": "mean-app",
   "version": "1.0.0",
   "description": "Simple mean stack app.",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/jtegtmeier/mean-app/issues"
   },
-  "homepage": "https://github.com/jtegtmeier/mean-app#readme"
+  "homepage": "https://github.com/jtegtmeier/mean-app#readme",
+  "dependencies": {
+    "angular": "^1.6.1",
+    "bootstrap": "^3.3.7",
+    "express": "^4.14.0",
+    "mongoose": "^4.7.8"
+  }
 }
