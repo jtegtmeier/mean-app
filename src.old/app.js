@@ -1,7 +1,10 @@
 'use strict';
+
+import angular from 'angular';
+import 'bootstrap/dist/css/bootstrap.css';
 /*global angular*/
 
-angular.module('MeanApp', [
+angular.module('App', [
     
 ])
 .controller('MainCtrl', function($scope, $http){

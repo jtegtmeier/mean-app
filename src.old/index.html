@@ -1,0 +1,54 @@
+<!doctype html>
+
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="utf-8">
+    
+    <title>AngularJS 1.x App</title>
+    <meta name="author" content="Jake Tegtmeier">
+    <meta name="viewport" content="width=device-width">
+    
+    <link rel="stylesheet" href="dist/css/normalize-5.0.0.css">
+    <link rel="stylesheet" href="dist/css/tether.min.css">
+    <link rel="stylesheet" href="dist/css/bootstrap-4.0.0.min.css">
+    <link rel="stylesheet" href="dist/css/main.css">
+</head>
+
+<body ng-controller="MainCtrl">
+    <div class="header container-fluid">
+        <div class="maintext col-5">
+            Wowie, Angular 1.x
+        </div>
+        <nav class="nav col-7">
+            
+        </nav>
+    </div>
+    <div class="main container">
+        <div class="filters col-2">
+            <h3>Link Filter</h3>
+            <ul>
+                <li ng-repeat="category in categories">
+                    <a href="#" ng-click="setCategory(category)">{{category}}</a>
+                </li>
+                <li><a href="#" ng-click="resetCategories()">Reset Filter</a></li>
+            </ul>
+        </div>
+        <div class="links col-9">
+            <h3>Links</h3>
+            <ul>
+                <li ng-repeat="link in links | filter:{category:currentCategory}">
+                    <a href="{{link.url}}">{{link.title}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    
+    <script type="text/javascript" src="dist/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="dist/js/tether.min.js"></script>
+    <script type="text/javascript" src="dist/js/bootstrap-4.0.0.min.js"></script>
+    <script type="text/javascript" src="dist/js/lodash-4.17.4.core.min.js"></script>
+    <script type="text/javascript" src="dist/js/angular-1.6.1.min.js"></script>
+    <script type="text/javascript" src="dist/app.js"></script>
+</body>
+</html>
