@@ -12,7 +12,7 @@ let app = () => {
     }
 };
 
-class AppCtrl {
+class MainCtrl {
     constructor() {
 
     }
