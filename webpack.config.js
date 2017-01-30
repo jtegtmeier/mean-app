@@ -1,7 +1,6 @@
 'use strict';
 
 const webpack = require('webpack');
-const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -13,9 +12,17 @@ module.exports = function makeWebpackConfig() {
 
     let config = {};
 
-    config.entry = {
-        app: './src/app/app.js'
-    };
+    if (isProd) {
+        config.entry = [
+            './src/app/app.js'
+        ];
+    }
+    else {
+        config.entry = [
+            'webpack-hot-middleware/client',
+            './src/app/app.js'
+        ];
+    }
 
     config.output = {
         path: __dirname + '/dist',
@@ -23,35 +30,20 @@ module.exports = function makeWebpackConfig() {
         filename: isProd ? '[name].[hash].js' : '[name].bundle.js',
         chunkFilename: isProd ? '[name].[hash].js' : '[name].bundle.js'
     };
-
-    if (isProd) {
-        config.devtool = 'source-map';
-    }
-    else {
-        config.devtool = 'eval-source-map';
-    }
+    
+    config.devtool = isProd ? 'source-map' : 'eval-source-map';
 
     config.module = {
         rules: [{
             test: /\.js$/,
-            loader: 'babel-loader',
+            loader: 'babel-loader?presets[]=es2015',
             exclude: /node_modules/
         }, {
             test: /\.scss$/,
-            loaders: ['style-loader', 'css-loader', 'sass-loader']
+            loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
         }, {
             test: /\.css$/,
-            loader: ExtractTextPlugin.extract({
-                fallbackLoader: 'style-loader',
-                loader: [{
-                    loader: 'css-loader',
-                    query: {
-                        sourceMap: true
-                    }
-                }, {
-                    loader: 'postcss-loader'
-                }],
-            })
+            loader: ['style-loader', 'css-loader', 'postcss-loader']
         }, {
             test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
             loader: 'file-loader'
@@ -62,14 +54,6 @@ module.exports = function makeWebpackConfig() {
     };
 
     config.plugins = [
-        new webpack.LoaderOptionsPlugin({
-            test: /\.scss$/i,
-            options: {
-                postcss: {
-                    plugins: [autoprefixer]
-                }
-            }
-        }),
         new HtmlWebpackPlugin({
             template: './src/public/index.html',
             inject: 'body'
@@ -78,17 +62,19 @@ module.exports = function makeWebpackConfig() {
             filename: 'css/[name].css',
             disable: !isProd,
             allChunks: true
-        })
+        }),
+        new webpack.NoEmitOnErrorsPlugin()
     ];
 
     if (isProd) {
         config.plugins.push(
-            new webpack.NoEmitOnErrorsPlugin(),
-            // new webpack.optimize.UglifyJsPlugin(),
             new CopyWebpackPlugin([{
                 from: __dirname + '/src/public'
             }])
         )
+    }
+    else {
+        config.plugins.push(new webpack.HotModuleReplacementPlugin())
     }
 
     config.devServer = {

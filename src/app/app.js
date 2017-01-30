@@ -24,13 +24,13 @@ angular.module('app', [
     .directive('app', app)
     .controller('MainCtrl', function($scope, $http) {
 
-        $http.get("data/categories").then(function success(res) {
+        $http.get("linkdata/?q=categories").then(function success(res) {
             $scope.categories = res.data;
         }, function error(res) {
             console.log(res);
         })
 
-        $http.get("data/links").then(function success(res) {
+        $http.get("linkdata/?q=links").then(function success(res) {
             $scope.links = res.data
         }, function error(res) {
             console.log(res);
