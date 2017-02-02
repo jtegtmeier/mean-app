@@ -6,7 +6,7 @@ import mongoose from 'mongoose';
 import webpack from 'webpack';
 import webpackMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import config from './webpack.config.js';
+import webpackConfig from './webpack.config.js';
 
 const isDeveloping = process.env.NODE_ENV !== 'production';
 const IPaddress = isDeveloping ? process.env.IP : process.env.IP;
@@ -31,13 +31,13 @@ db.once('open', function() {
     console.log("Database connected!");
 });
 
-//setup webpack and express server
+//setup webpack middleware and express server
 //or run production server
 if (isDeveloping) {
-    const compiler = webpack(config);
+    const compiler = webpack(webpackConfig);
     const middleware = webpackMiddleware(compiler, {
-        publicPath: config.output.publicPath,
-        contentBase: 'src',
+        publicPath: webpackConfig.output.publicPath,
+        //contentBase: 'src',
         stats: {
             colors: true,
             hash: false,
@@ -58,7 +58,7 @@ if (isDeveloping) {
 else {
     app.use(express.static(__dirname + '/dist'));
     app.get('/', (req, res) => {
-        res.sendFile(path.join(__dirname, 'dist/index.html'));
+        res.sendFile(path.join(__dirname, '/dist/index.html'));
     });
 }
 

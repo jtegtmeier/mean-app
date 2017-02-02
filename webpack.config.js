@@ -2,8 +2,6 @@
 
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const ENV = process.env.npm_lifecycle_event;
 const isProd = ENV === 'build';
@@ -19,28 +17,28 @@ module.exports = function makeWebpackConfig() {
     }
     else {
         config.entry = [
-            'webpack-hot-middleware/client',
+            'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
             './src/app/app.js'
         ];
     }
 
     config.output = {
         path: __dirname + '/dist',
-        publicPath: isProd ? '/' : 'https://mean-app-jtegtmeier.c9users.io:8080/',
+        publicPath: 'https://mean-app-jtegtmeier.c9users.io:8080/',
         filename: isProd ? '[name].[hash].js' : '[name].bundle.js',
         chunkFilename: isProd ? '[name].[hash].js' : '[name].bundle.js'
     };
-    
+
     config.devtool = isProd ? 'source-map' : 'eval-source-map';
 
     config.module = {
         rules: [{
             test: /\.js$/,
-            loader: 'babel-loader?presets[]=es2015',
-            exclude: /node_modules/
+            exclude: /node_modules/,
+            loader: 'babel-loader?presets[]=es2015'
         }, {
             test: /\.scss$/,
-            loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+            loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
         }, {
             test: /\.css$/,
             loader: ['style-loader', 'css-loader', 'postcss-loader']
@@ -58,22 +56,10 @@ module.exports = function makeWebpackConfig() {
             template: './src/public/index.html',
             inject: 'body'
         }),
-        new ExtractTextPlugin({
-            filename: 'css/[name].css',
-            disable: !isProd,
-            allChunks: true
-        }),
         new webpack.NoEmitOnErrorsPlugin()
     ];
 
-    if (isProd) {
-        config.plugins.push(
-            new CopyWebpackPlugin([{
-                from: __dirname + '/src/public'
-            }])
-        )
-    }
-    else {
+    if (!isProd) {
         config.plugins.push(new webpack.HotModuleReplacementPlugin())
     }
 

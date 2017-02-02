@@ -1,10 +1,11 @@
 'use strict';
 
 import angular from 'angular';
+import 'normalize.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../scss/main.scss';
 
-let app = () => {
+let app = function() {
     return {
         template: require('./app.html'),
         controller: 'MainCtrl',
@@ -45,7 +46,12 @@ angular.module('app', [
         function resetCategories() {
             $scope.currentCategory = undefined;
         }
+        
+        function isCurrentCategory(category){
+            return $scope.currentCategory !== undefined && category === $scope.currentCategory;
+        }
 
         $scope.setCategory = setCategory;
         $scope.resetCategories = resetCategories;
+        $scope.isCurrentCategory = isCurrentCategory;
     });

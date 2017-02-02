@@ -24,10 +24,11 @@
     "angular": "^1.6.1",
     "bootstrap": "4.0.0-alpha.6",
     "express": "^4.14.0",
-    "mongoose": "^4.7.8"
+    "mongoose": "^4.7.8",
+    "normalize.css": "^5.0.0"
   },
   "devDependencies": {
-    "autoprefixer": "^6.7.0",
+    "autoprefixer": "^6.7.2",
     "babel-cli": "^6.22.2",
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
@@ -37,8 +38,9 @@
     "css-loader": "^0.26.1",
     "extract-text-webpack-plugin": "2.0.0-beta.5",
     "file-loader": "^0.9.0",
+    "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.7.1",
-    "node-sass": "^4.3.0",
+    "node-sass": "^4.5.0",
     "null-loader": "^0.1.1",
     "phantomjs-prebuilt": "^2.1.4",
     "postcss-loader": "^1.2.2",
@@ -47,8 +49,8 @@
     "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1",
     "webpack": "2.2.0",
-    "webpack-dev-middleware": "^1.9.0",
+    "webpack-dev-middleware": "^1.10.0",
     "webpack-dev-server": "2.2.0",
-    "webpack-hot-middleware": "^2.15.0"
+    "webpack-hot-middleware": "^2.16.1"
   }
 }
