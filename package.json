@@ -5,10 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rimraf dist && webpack --bail --progress --profile",
-    "serve": "NODE_ENV=production babel-node server.js --presets es2015,stage-2",
-    "webpack-server": "webpack-dev-server --history-api-fallback --host $IP --port $PORT  --hot --inline --progress",
-    "start": "babel-node server.js --presets es2015,stage-2"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -22,35 +19,8 @@
   "homepage": "https://github.com/jtegtmeier/mean-app#readme",
   "dependencies": {
     "angular": "^1.6.1",
-    "bootstrap": "4.0.0-alpha.6",
+    "bootstrap": "^3.3.7",
     "express": "^4.14.0",
-    "mongoose": "^4.7.8",
-    "normalize.css": "^5.0.0"
-  },
-  "devDependencies": {
-    "autoprefixer": "^6.7.2",
-    "babel-cli": "^6.22.2",
-    "babel-core": "^6.22.1",
-    "babel-loader": "^6.2.10",
-    "babel-preset-es2015": "^6.22.0",
-    "babel-preset-stage-2": "^6.22.0",
-    "copy-webpack-plugin": "4.0.1",
-    "css-loader": "^0.26.1",
-    "extract-text-webpack-plugin": "2.0.0-beta.5",
-    "file-loader": "^0.9.0",
-    "html-loader": "^0.4.4",
-    "html-webpack-plugin": "^2.7.1",
-    "node-sass": "^4.5.0",
-    "null-loader": "^0.1.1",
-    "phantomjs-prebuilt": "^2.1.4",
-    "postcss-loader": "^1.2.2",
-    "raw-loader": "^0.5.1",
-    "rimraf": "^2.5.1",
-    "sass-loader": "^4.1.1",
-    "style-loader": "^0.13.1",
-    "webpack": "2.2.0",
-    "webpack-dev-middleware": "^1.10.0",
-    "webpack-dev-server": "2.2.0",
-    "webpack-hot-middleware": "^2.16.1"
+    "mongoose": "^4.7.8"
   }
 }
